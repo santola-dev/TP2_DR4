@@ -1,0 +1,26 @@
+﻿@page
+@model Pages.SaveNoteModel
+
+<h2>Salvar Nota</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Input.Content">Digite sua nota:</label>
+        <textarea asp-for="Input.Content" class="form-control" rows="6"></textarea>
+        <span asp-validation-for="Input.Content" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Salvar</button>
+</form>
+
+@if (!string.IsNullOrEmpty(Model.SavedFileName))
+{
+    <div class="alert alert-success mt-4">
+        Nota salva com sucesso! <br />
+        <a href="@Model.SavedFilePath" download class="btn btn-success mt-2">Baixar Arquivo</a>
+    </div>
+}
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

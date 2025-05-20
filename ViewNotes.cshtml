@@ -1,0 +1,29 @@
+﻿@page
+@model CityManager.Pages.ViewNotesModel
+@{
+    ViewData["Title"] = "Notas Salvas";
+}
+
+<h2>Notas Salvas</h2>
+
+@if (Model.NoteFiles.Count == 0)
+{
+    <p>Nenhuma nota encontrada.</p>
+}
+else
+{
+    <ul>
+        @foreach (var file in Model.NoteFiles)
+        {
+            <li>
+                <a asp-page="/ViewNotes" asp-route-fileName="@file">@file</a>
+            </li>
+        }
+    </ul>
+}
+
+@if (!string.IsNullOrEmpty(Model.SelectedContent))
+{
+    <h3 class="mt-4">Conteúdo de: @Model.SelectedFile</h3>
+    <pre class="bg-light p-3 border">@Model.SelectedContent</pre>
+}
